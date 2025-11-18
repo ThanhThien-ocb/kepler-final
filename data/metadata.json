@@ -1,0 +1,13 @@
+{
+  "query_id": "q1_0",
+  "predicates": [
+    {
+      "name": "param0",
+      "data_type": "text"
+    },
+    {
+      "name": "param1",
+      "data_type": "text"
+    }
+  ]
+}

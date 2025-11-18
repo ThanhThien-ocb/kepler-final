@@ -1,0 +1,28 @@
+=== SUMMARY MODEL vs DEFAULT ===
+CSV nguồn             : artifacts/compare_q1_0_detail.csv
+Số mẫu                : 49994
+SelAcc                : 0.959515
+Speedup(model)_mean   : 1.322625
+Speedup(optimal)_mean : 1.355313
+Regression_rate       : 0.035924
+Exact_optimal_rate    : 0.522063
+
+--- Delta stats (model_latency / optimal_latency) ---
+Mean(Δ)               : 1.028707
+Median(Δ)             : 1.000000
+Min(Δ)                : 1.000000
+Max(Δ)                : 30.592096
+90th pct(Δ)           : 1.075022
+95th pct(Δ)           : 1.094995
+
+--- Worst 10 cases by Δ ---
+stackoverflow####math-mode: Δ=30.5921, default=0.0936, optimal=0.0724, model=2.2140, speedup_model=0.0423
+physics####laplace-transform: Δ=28.3541, default=0.0985, optimal=0.0744, model=2.1093, speedup_model=0.0467
+stackoverflow####arcgis-online: Δ=17.2020, default=0.0513, optimal=0.0462, model=0.7949, speedup_model=0.0646
+cstheory####applicative: Δ=9.3548, default=0.0557, optimal=0.0468, model=0.4379, speedup_model=0.1271
+stackoverflow####gui-design: Δ=7.9815, default=0.1044, optimal=0.0834, model=0.6659, speedup_model=0.1568
+stackoverflow####sharelatex: Δ=4.2294, default=0.0661, optimal=0.0623, model=0.2635, speedup_model=0.2507
+ru####web-apps: Δ=4.1178, default=0.1879, optimal=0.1322, model=0.5446, speedup_model=0.3451
+stackoverflow####las: Δ=4.1071, default=0.0916, optimal=0.0670, model=0.2750, speedup_model=0.3331
+askubuntu####ipmi: Δ=3.6143, default=0.0950, optimal=0.0834, model=0.3016, speedup_model=0.3149
+stackoverflow####metafont: Δ=3.5185, default=0.0391, optimal=0.0391, model=0.1374, speedup_model=0.2842
