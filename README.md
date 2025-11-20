@@ -45,7 +45,7 @@ data/stack_params/q1_0-178214.json
 
 File này chứa danh sách parameters dùng để sinh instance query.
 
-🔧 3. Sinh Candidate Plans (RCE – Row Count Evolution)
+3. Sinh Candidate Plans (RCE – Row Count Evolution)
 
 Sinh các plan có cấu trúc khác nhau bằng pg_hint_plan.
 
@@ -67,7 +67,7 @@ execution_data/candidate_plans/
   ├── rce_q1_0_plan_indices.json
   ├── rce_q1_0_failures.json
 
-⏱ 4. Đo Latency cho từng Plan
+ 4. Đo Latency cho từng Plan
 
 Đo thời gian chạy thực tế đối với mỗi (param, plan):
 
@@ -97,7 +97,7 @@ Output:
 
 artifacts/plan_cover_q1.json
 
-📝 6. Chuẩn bị Metadata đơn giản
+ 6. Chuẩn bị Metadata đơn giản
 
 Metadata mô tả:
 
@@ -124,8 +124,7 @@ Lưu vào:
 
 metadata/metadata_q1.json
 
-🤖 7. Train SNGP Near-Optimal Multihead Model
-
+ 7. Train SNGP Near-Optimal Multihead Model
 Chạy script train:
 
 python3 sngp_pipeline/train_sngp_nearopt.py \
