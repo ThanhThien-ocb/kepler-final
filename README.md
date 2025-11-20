@@ -1,4 +1,4 @@
-xuất file pdf bao gồm các nội dung này Pipeline bao gồm các giai đoạn:
+
 
 Sinh instance parameters
 
