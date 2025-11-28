@@ -22,9 +22,16 @@ PostgreSQL + pg_hint_plan
 
 Pipeline yêu cầu:
 
-PostgreSQL 14+
+- PostgreSQL 14+
+sudo apt update
+sudo apt install postgresql-14 postgresql-server-dev-14
+- Extension pg_hint_plan
 
-Extension pg_hint_plan
+git clone https://github.com/ossc-db/pg_hint_plan.git
+cd pg_hint_plan
+make
+sudo make install
+
 
 Database đã load dữ liệu StackOverflow (hoặc dataset tương tự)
 
@@ -71,13 +78,14 @@ execution_data/candidate_plans/
 
 Đo thời gian chạy thực tế đối với mỗi (param, plan):
 
-python3 scripts/collect_exec_latencies.py \
-  --cands execution_data/candidate_plans \
-  --out artifacts/exec_latencies_q1.csv \
-  --scope per-candidate \
-  --repeats 3 \
+python3 scripts/measure_latencies_q1.py \
+  --out data/exec_latencies.csv \
+  --sample-rate 0.3125 \
+  --sample-seed 42 \
   --statement-timeout-ms 45000 \
-  --lock-timeout-ms 2000
+  --lock-timeout-ms 1000 \
+  --repeats 1
+
 
 
 Output:
@@ -88,9 +96,9 @@ artifacts/exec_latencies_q1.csv
 
 Plan cover là tập kế hoạch nhỏ nhất bao phủ toàn bộ instance near-optimal.
 
-python3 scripts/build_plan_cover.py \
-  --lat artifacts/exec_latencies_q1.csv \
-  --out artifacts/plan_cover_q1.json
+python3 scripts/build_plan_cover_q1_from_latencies.py \
+  --latencies data/exec_latencies.csv \
+  --out artifacts/plan_cover.json
 
 
 Output:
@@ -128,12 +136,23 @@ metadata/metadata_q1.json
 Chạy script train:
 
 python3 sngp_pipeline/train_sngp_nearopt.py \
-  --lat artifacts/exec_latencies_q1.csv \
+  --lat data/exec_latencies.csv \
   --metadata metadata/metadata_q1.json \
-  --plan-cover artifacts/plan_cover_q1.json \
+  --plan-cover artifacts/plan_cover.json \
   --out artifacts/models_q1 \
-  --epochs 30 \
+  --epochs 50 \
   --batch-size 128
+
+
+  visualize kết quả
+  python3 scripts/demo_q1_visualize.py \
+  --lat data/exec_latencies.csv \
+  --metadata models/sngp_nearopt_q1_0/metadata.json \
+  --plan-cover models/sngp_nearopt_q1_0/plan_cover.json \
+  --weights models/sngp_nearopt_q1_0/model.weights.h5 \
+  --out-dir artifacts/q1_visualize \
+  --num-examples 3
+
 
 
 Pipeline train bao gồm:
