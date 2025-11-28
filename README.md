@@ -1,4 +1,4 @@
-
+các bước thực hiện
 
 Sinh instance parameters
 
